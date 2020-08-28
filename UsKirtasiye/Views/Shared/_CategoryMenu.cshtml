@@ -1,0 +1,123 @@
+﻿@model List<UsKirtasiye.DB.Categories>
+
+<style>
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+
+            .dropdown-submenu.pull-left > .dropdown-menu {
+                left: -100%;
+                margin-left: 10px;
+                -webkit-border-radius: 6px 0 6px 6px;
+                -moz-border-radius: 6px 0 6px 6px;
+                border-radius: 6px 0 6px 6px;
+            }
+</style>
+
+<div class="shop_sidebar_area">
+
+    <!-- ##### Single Widget ##### -->
+    <div class="widget catagory mb-50">
+        <!-- Widget Title -->
+        <h6 class="widget-title mb-30">Kategoriler - Ürünlerimiz</h6>
+
+        <!--  Catagories  -->
+        <div class="catagories-menu">
+            <ul>
+
+                @foreach (var cat in Model)
+                {
+
+                    if (cat.Categories1.Any())
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="@Url.Action("Product","Product",new { id=cat.Id })">@cat.Name<span class="caret"></span></a>
+                            @_MenuHelper.MenuRecursive(cat.Categories1.ToList())
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Product","Product",new { id=cat.Id })">@cat.Name</a></li>
+                    }
+
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@*<nav class="mb-1 navbar navbar-expand-lg navbar-dark orange lighten-1">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+            <ul class="navbar-nav mr-auto">
+                @foreach (var cat in Model)
+                {
+
+                    if (cat.Categories1.Any())
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="@Url.Action("Product","Product",new { id=cat.Id })">@cat.Name<span class="caret"></span></a>
+                            @_MenuHelper.MenuRecursive(cat.Categories1.ToList())
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a href="@Url.Action("Product","Product",new { id=cat.Id })">@cat.Name</a></li>
+                    }
+
+                }
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item avatar">
+                    <a class="nav-link p-0" href="#">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+                             alt="avatar image" height="35">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>*@

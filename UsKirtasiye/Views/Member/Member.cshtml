@@ -1,0 +1,86 @@
+﻿@model IEnumerable<UsKirtasiye.DB.Members>
+@{
+    ViewBag.Title = "Member";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Kayıtlı Kişiler</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayName("Adı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Soyadı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Mail")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Telefon Numarası")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayName("Adı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Soyadı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Mail")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Telefon Numarası")
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td scope="row">@i</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Surname)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

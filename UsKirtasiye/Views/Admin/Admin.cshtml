@@ -1,0 +1,92 @@
+﻿@model IEnumerable<UsKirtasiye.DB.Products>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Ürünler-Düzenle/Sil</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayName("Ürün Adı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Fiyatı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Kategori İsmi")
+                            </th>
+                            <th>Düzenle/Sil</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayName("Ürün Adı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Fiyatı")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Kategori İsmi")
+                            </th>
+                            <th>Düzenle/Sil</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td scope="row">@i</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price) ₺
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Categories.Name)
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-xs">
+                                        <a style="color:white; text-decoration:none" href="@Url.Action("Edit", new { id = item.Id })">Düzenle</a>
+                                    </button> |
+                                    <button type="button" onclick="DeleteProduct('@Url.Action("Delete", new { id=item.Id })')" class="btn btn-secondary btn-xs">Sil</button>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function DeleteProduct(url) {
+        if (confirm("Silmek İstediğine Emin Misin?")) {
+            location.href = url;
+        }
+    }
+</script>

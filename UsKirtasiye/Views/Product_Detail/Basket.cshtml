@@ -1,0 +1,97 @@
+﻿@model List<UsKirtasiye.Models.Product_Detail.ProductBasketModels>
+@{
+    ViewBag.Title = "Basket";
+}
+
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <div class="cart-title mt-50">
+                    <h2><span class="fa fa-shopping-basket"></span> Sepettekiler</h2>
+                </div>
+
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th><a href="~/Product_Detail/RemoveBasket/0"><span class="fa fa-times"></span> Sepeti Boşalt</a></th>
+                                <th>Ürün Adı</th>
+                                <th>Fiyat</th>
+                                <th>Ürün Adedi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UsKirtasiye.Models.Product_Detail.ProductBasketModels item in Model)
+                            {
+                                <tr>
+                                    <td class="cart_product_img">
+                                        <a href="~/Product_Detail/Product_Detail/@item.Products.Id"><img src="@item.Products.Photo" alt="Ürün"></a>
+                                    </td>
+                                    <td class="cart_product_desc">
+                                        <h5>@item.Products.Name</h5>
+                                        <a href="~/Product_Detail/RemoveBasket/@item.Products.Id" class="btn btn-warning btn-sm">
+                                            <span style="color:#321911;" class="fa fa-trash">  Ürünü Sil</span>
+                                        </a>
+                                    </td>
+                                    <td class="price">
+                                        <span>₺ @item.Products.Price</span>
+                                        <br />
+                                        <span>₺ @(item.Products.Price * item.Count)</span>
+                                    </td>
+                                    <td class="costumcss">
+                                        <a href="~/Product_Detail/AddBasket/@item.Products.Id?remove=true" class="btn btn-warning  btn-sm">
+                                            <span style="color:#321911" class="fa fa-minus"></span>
+                                        </a>
+                                        <span class="deneme">@item.Count</span>
+
+                                        <a href="~/Product_Detail/AddBasket/@item.Products.Id" class="btn btn-warning  btn-sm">
+                                            <span style="color:#321911" class="fa fa-plus"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="cart-summary">
+                    <h5>Sipariş Özeti</h5>
+                    <hr />
+                    <ul class="summary-table">
+                        <li><span>Ara Toplam:</span> <span>₺ @TempData["TotalPrice"]</span></li>
+
+                        <li>
+                            <span>Kargo Fiyatı:</span> <span>₺ 0</span>
+                        </li>
+                        <li class="font-weight-bold"><span>Toplam:</span> <span>₺ @TempData["TotalPrice"]</span></li>
+                        <li><span style="color:red"><b class="text-center">@TempData["myerror"]</b></span></li>
+                    </ul>
+                    <div class="cart-btn mt-100">
+                        <button class="btn btn-warning w-100">
+                            @if (Session["LogonUser"] == null)
+                            {
+                                //oturum açık değil ise
+
+                                <a href="@Url.Action("Login","Login")" style="color:white;font-size:medium">Satın Al</a>
+                            }
+                            else
+                            {
+                                //eğer oturum açık ise satın alma sayfasına yönlendir.
+                                <a href="@Url.Action("Buy","Buy")" style="color:white;font-size:medium">Satın Al</a>
+
+                            }
+                        </button>
+                        <br />
+                        <br />
+                        <button class="btn btn-default w-100">
+                            <a href="@Url.Action("Product","Product")" style="color:black;font-size:medium"><span class="fa fa-repeat"></span> Alışverişe Devam Et</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.Partial("lastnine", (List<UsKirtasiye.DB.Products>)ViewBag.lastPro)
+    </div>
+</div>

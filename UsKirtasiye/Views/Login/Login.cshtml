@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<div class="single-product-area section-padding-100 ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                @using (Html.BeginForm("GirisYap", "Login"))
+                {
+
+                    <div class="container">
+                        <div class="card" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-gold-gold-low-profile-background-material-low-profilebackground-materialconference-image_69763.jpg)">
+                            <article class="card-body mx-auto" style="max-width: 400px;">
+                                <h4 class="card-title mt-3 text-center"><b><span class="fa fa-user"></span> Giriş Yap</b></h4>
+                                <p class="text-center">Giriş yapıp hemen alışverişe başlayabilirsin!</p>
+                                <p class="text-center" style="color:red">@TempData["Hata"]</p>
+                                <p class="text-center" style="color:green">@TempData["info"]</p>
+
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                    </div>
+                                    @Html.TextBox("Email", "", new { @class = "form-control", placeholder = "E-Mail", type = "email", required = "required" })
+                                </div> <!-- form-group// -->
+
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    @Html.TextBox("Password", "", new { @class = "form-control", type = "password", placeholder = "Şifre", required = "required" })
+                                </div> <!-- form-group// -->
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-secondary btn-block"><span class="fa fa-sign-in"></span> Giriş Yap </button>
+                                </div> <!-- form-group// -->
+                                <p class="text-center">Kayıtlı Değil misin ? <a href="@Url.Action("Register","Register")" style="font-size:small;font-weight:bold"><span class="fa fa-registered"></span> Kayıt Ol</a> </p>
+                                <p class="text-center">Şifremi Unuttum <a href="@Url.Action("ForgotPass","ForgotPass")" style="font-size:small;font-weight:bold"><span class="fa fa-key"></span> Şifre Değiş</a> </p>
+                            </article>
+                        </div> <!-- card.// -->
+                    </div>
+                    <!--container end.//-->
+                }
+            </div>
+        </div>
+        <br />
+        <br />
+
+        @Html.Partial("lastnine", (List<UsKirtasiye.DB.Products>)ViewBag.lastPro)
+    </div>
+</div>

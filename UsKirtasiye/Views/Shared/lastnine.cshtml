@@ -1,0 +1,247 @@
+﻿@model  List<UsKirtasiye.DB.Products>
+
+<div class="row">
+    <!--Carousel Wrapper-->
+    <section class="section-preview">
+        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+            <!--Controls-->
+            <div class="controls-top text-center">
+                <button style="border-radius:22px" class="btn btn-warning" href="#multi-item-example" data-slide="prev"><span class="fa fa-chevron-left"></span></button>
+                <button style="border-radius:22px" class="btn btn-warning" href="#multi-item-example" data-slide="next">
+                    <span class="fa fa-chevron-right"></span>
+                </button>
+            </div>
+            <br />
+            <!--/.Controls-->
+            <!--Indicators-->
+            <div class="row">
+                <ol class="carousel-indicators">
+                    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                    <li data-target="#multi-item-example" data-slide-to="1"></li>
+                    <li data-target="#multi-item-example" data-slide-to="2"></li>
+                </ol>
+            </div>
+            <div class="row">
+                <div class="col-12">
+
+                    <h2 class="text-center"><span class="fa fa-shopping-basket" style="color:#fbb710;font-weight:400"></span> Yeni Gelenler</h2>
+                </div>
+            </div>
+            <br />
+
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+
+                <!--First slide-->
+                @for (int i = 0; i < 3; i++)
+                {
+                    if (i == 0)
+                    {
+                        <div class="carousel-item active">
+                            <div class="row">
+                                @{
+                                    var m = 0;
+                                }
+
+                                @foreach (UsKirtasiye.DB.Products item in Model)
+                                {
+
+                                    m++;
+                                    if (m == 4)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="card mb-2" id="cardlar">
+                                                <img class="card-img-top"
+                                                     src="@item.Photo" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title" style="color:#fbb710">₺ @item.Price</h4>
+                                                    <p class="card-text text-center">
+                                                        <b> @item.Name </b>
+                                                    </p>
+                                                    <button class="btn btn-warning">
+                                                        <a href="~/Product_Detail/AddBasket/@item.Id">Sepete Ekle</a>
+                                                    </button>
+                                                    <button class="btn btn-default">
+                                                        <a href="@Url.Action("Product_Detail","Product_Detail",new { id= item.Id})">Ürüne Git</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                    }
+                    else if (i == 1)
+                    {
+                        <div class="carousel-item ">
+                            <div class="row">
+                                @{
+                                    var m = 0;
+                                }
+
+                                @foreach (UsKirtasiye.DB.Products item in Model)
+                                {
+
+                                    m++;
+                                    if (m < 4)
+                                    {
+
+                                    }
+                                    else if (m < 7)
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="card mb-2" id="cardlar">
+                                                <img class="card-img-top"
+                                                     src="@item.Photo" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title" style="color:#fbb710">₺ @item.Price</h4>
+                                                    <p class="card-text text-center">
+                                                        <b> @item.Name </b>
+                                                    </p>
+                                                    <button class="btn btn-warning">
+                                                        <a href="~/Product_Detail/AddBasket/@item.Id">Sepete Ekle</a>
+                                                    </button>
+                                                    <button class="btn btn-default">
+                                                        <a href="@Url.Action("Product_Detail","Product_Detail",new { id= item.Id})">Ürüne Git</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    else
+                                    {
+                                        break;
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item ">
+                            <div class="row">
+                                @{
+                                    var m = 0;
+                                }
+
+                                @foreach (UsKirtasiye.DB.Products item in Model)
+                                {
+
+                                    m++;
+                                    if (m < 7)
+                                    {
+
+                                    }
+                                    else if (m < 10)
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="card mb-2" id="cardlar">
+                                                <img class="card-img-top"
+                                                     src="@item.Photo" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h4 class="card-title" style="color:#fbb710">₺ @item.Price</h4>
+                                                    <p class="card-text text-center">
+                                                        <b> @item.Name </b>
+                                                    </p>
+                                                    <button class="btn btn-warning">
+                                                        <a href="~/Product_Detail/AddBasket/@item.Id">Sepete Ekle</a>
+                                                    </button>
+                                                    <button class="btn btn-default">
+                                                        <a href="@Url.Action("Product_Detail","Product_Detail",new { id= item.Id})">Ürüne Git</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    else
+                                    {
+                                        break;
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <!--/.First slide-->
+    </section>
+</div>
+<!--/.Slides-->
+<style>
+
+    #cardlar {
+        transition: box-shadow .3s;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background: #fff;
+        float: left;
+        box-shadow: 3px 3px 3px 3px #e0d7e4;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 11px rgba(33,33,33,.2);
+    }
+
+    .section-preview {
+        border: 1px none #e0e0e0;
+        padding: 15px;
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 15;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-left: 0;
+        margin-right: 15%;
+        margin-left: 15%;
+        list-style: none;
+    }
+
+    .carousel-multi-item .carousel-indicators {
+        margin-bottom: -1em;
+    }
+
+        .carousel-multi-item .carousel-indicators .active {
+            width: 1.56rem;
+            max-width: 1.56rem;
+            height: 1.56rem;
+            background-color: #fbb710;
+            border-radius: 50%;
+        }
+
+        .carousel-multi-item .carousel-indicators li {
+            width: 1.25rem;
+            max-width: 1.25rem;
+            height: 1.25rem;
+            margin-bottom: -3.75rem;
+            background-color: #fbb710;
+            box-shadow: 1px 1px #fbb710
+        }
+
+        .carousel-multi-item .carousel-indicators li {
+            width: 1.25rem;
+            max-width: 1.25rem;
+            height: 1.25rem;
+            margin-bottom: -3.75rem;
+            background-color: #fbb710;
+        }
+</style>

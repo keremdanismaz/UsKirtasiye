@@ -1,0 +1,40 @@
+﻿@model List<UsKirtasiye.Models.OrderModels>
+    @{
+        ViewBag.Title = "Sparişlerim";
+    }
+    <div class="cart-table-area section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="cart-title mt-50">
+                        <h2><span class="fa fa-first-order"></span> Sparişlerim</h2>
+                    </div>
+
+                    <div class="cart-table clearfix">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Ürün Adı</th>
+                                    <th>Fiyat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (UsKirtasiye.Models.OrderModels item in Model)
+                                {
+                                    <tr>
+
+                                        <td class="cart_product_desc">
+                                            <h5>@item.OrderName</h5>
+                                        </td>
+                                        <td class="price">
+                                            <span> <b>₺ @item.TotalPrice</b></span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

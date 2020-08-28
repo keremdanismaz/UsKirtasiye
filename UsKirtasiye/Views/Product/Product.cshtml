@@ -1,0 +1,118 @@
+﻿@model UsKirtasiye.Models.ProductModel
+
+@{
+    ViewBag.Title = "Product";
+    List<UsKirtasiye.DB.Categories> categories = new List<UsKirtasiye.DB.Categories>(); // Boş bir categori listi oluşturdum.
+    if (Model.Categories != null) //Modelin içinden boş değer gelmiyorsa gir
+    {
+        categories.Add(Model.Categories); //gelen kategoriyi liste ekle
+        var parentcat = Model.Categories.Categories2; // kategorinin atası varsa onu da ekle
+        while (parentcat != null) // atası  bitene kadar dön ve her seferinde içine ekleme yap
+        {
+            categories.Add(parentcat);
+            parentcat = parentcat.Categories2;
+        }
+    }
+}
+
+<style>
+    .item-card-price-old {
+        line-height: 1.2;
+        text-decoration: line-through;
+        color: #fbb710;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 15px;
+    }
+</style>
+
+@Html.Partial("_CategoryMenu", (List<UsKirtasiye.DB.Categories>)ViewBag.MenuCat)
+<div class="single-product-area section-padding-100 ">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div>
+
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mt-50">
+                                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Index")"><span class="fa fa-home"></span> Home</a></li>
+                                    @for (int i = categories.Count - 1; i >= 0; i--)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            <li class="breadcrumb-item active" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@categories[i].Name</li>
+                                        }
+                                        else
+                                        {
+                                            <li class="breadcrumb-item"><a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" href="@Url.Action("Product","Product",new { id=categories[i].Id })">@categories[i].Name</a></li>
+                                        }
+
+                                    }
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- Single Product Area -->
+
+            @foreach (var ürün in Model.Products)
+            {
+                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+
+                    <div class="single-product-wrapper">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="@ürün.Photo" alt="">
+                            <!-- Hover Thumb -->
+                            <img class="hover-img" src="@ürün.Photo" alt="">
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="product-description d-flex align-items-center justify-content-between">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p class="product-price">₺ @ürün.Price</p>
+                                <a href="@Url.Action("Product_Detail","Product_Detail",new { id= ürün.Id})">
+                                    <h6>@ürün.Name</h6>
+                                </a>
+                            </div>
+                            <!-- Ratings & Cart -->
+
+                            <div class=" text-right">
+                                <div>
+                                    <span class="item-card-price-old">@(ürün.Price + (ürün.Price * 3 / 100))</span>
+                                </div>
+                                <div class="cart">
+                                    <a href="~/Product_Detail/AddBasket/@ürün.Id" data-toggle="tooltip" data-placement="left" title="Sepete Ekle"><img style="height:20px" src="~/img/core-img/cart.png" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+
+                <nav aria-label="navigation">
+                    <ul class="pagination justify-content-end mt-50">
+                        <li class="page-item active"><a class="page-link" href="#">01.</a></li>
+                        <li class="page-item"><a class="page-link" href="#">02.</a></li>
+                        <li class="page-item"><a class="page-link" href="#">03.</a></li>
+                        <li class="page-item"><a class="page-link" href="#">04.</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

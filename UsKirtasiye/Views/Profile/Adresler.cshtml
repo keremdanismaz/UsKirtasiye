@@ -1,0 +1,56 @@
+﻿@model UsKirtasiye.DB.Addresses
+@{
+    ViewBag.Title = "Adresler";
+}
+<div class="single-product-area section-padding-100 ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                @using (Html.BeginForm("Adresler", "Profile"))
+                {
+
+                    <div class="container">
+
+                        <div class="card" style="background-image:url(https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-gold-gold-low-profile-background-material-low-profilebackground-materialconference-image_69763.jpg)">
+                            <div class="row">
+                                <div class="col-2"></div>
+
+                                <div class="col-8 ">
+                                    <h4 class="card-title mt-3 text-center"><b><span style="font-weight:bold" class="fa fa-address-book"></span> Adres Bilgilerim</b></h4>
+                                    <p class="text-center" style="color:green"><b>@TempData["AdresDoğrulama"] </b></p>
+
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fa fa-address-card"></i> </span>
+                                        </div>
+                                        @Html.HiddenFor(model => model.Id, new { @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", type = "text", required = "required" })
+                                    </div> <!-- form-group// -->
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fa fa-location-arrow"></i> </span>
+                                        </div>
+                                        @Html.TextBoxFor(model => model.AdresDescription, new { @class = "form-control", type = "text", required = "required" })
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <button type="submit" class="btn btn-secondary btn-block"><span class="fa fa-repeat"></span> Güncelle </button>
+                                            </div> <!-- form-group// -->
+                                            <div class="form-group col-6">
+                                                <button type="submit" class="btn btn-secondary btn-block"><span class="fa fa-trash"></span> Sil </button>
+                                            </div>
+                                        </div>
+                                    </div> <!-- card.// -->
+                                </div> <!-- card.// -->
+
+                                <div class="col-2"></div>
+                            </div> <!-- card.// -->
+                        </div>
+                    </div>
+                    <!--container end.//-->
+                }
+            </div>
+        </div>
+    </div>
+</div>

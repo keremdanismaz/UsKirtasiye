@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "AdminFirstPge";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-5">Hoşgeldin, @(((UsKirtasiye.DB.Members)Session["LogonUser"]).Name) @(((UsKirtasiye.DB.Members)Session["LogonUser"]).Surname) !</h1>
+        <p class="lead">Senin için bir yönetim paneli oluşturuldu,burada neler yapabileceğini aşağıda açıkladık.</p>
+        <hr class="my-4">
+        <ol>
+            <b> <li class="text-center">Ürün bilgilerini eksiksiz bir şekilde girerek yeni bir ürün ekleyebilirsin.</li></b>
+            <hr />
+            <b> <li class="text-center">Eklediğin ürünleri tekrardan düzenler veya silebilirsin.</li></b>
+            <hr />
+            <b> <li class="text-center">Yeni bir alt ve  ana kategori ekleyebilirsin.</li></b>
+            <hr />
+            <b> <li class="text-center">Kategorileri tekrar düzenleyip istersen silebilirsin.</li></b>
+            <hr />
+            <b> <li class="text-center">Siteye kayırlı kullanıcıları listeleyebilirsin.</li></b>
+            <hr />
+            <b> <li class="text-center">Satış yaptığın kişiye ne sattığına bakabilirsin.</li></b>
+            <hr />
+            <b> <li class="text-center">Kendi profil bilgilerini düzenleyebilirsin</li></b>
+            <hr />
+        </ol>
+    </div>
+</div>

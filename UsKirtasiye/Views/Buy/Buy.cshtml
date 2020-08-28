@@ -1,0 +1,87 @@
+﻿@model  List<UsKirtasiye.Models.Product_Detail.ProductBasketModels>
+
+@{
+    ViewBag.Title = "Buy";
+}
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="cart-title mt-50">
+                    <h2><span class="fa fa-shopping-cart"></span> Satın Al</h2>
+                </div>
+
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Ürün Adı</th>
+                                <th>Ürün Fiyatı</th>
+                                <th>Ara Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UsKirtasiye.Models.Product_Detail.ProductBasketModels item in Model)
+                            {
+                                <tr>
+                                    <td class="cart_product_img">
+                                        <a href="~/Product_Detail/Product_Detail/@item.Products.Id"><img src="~/img/core-img/deneme.jpg" alt="Ürün"></a>
+                                    </td>
+                                    <td class="cart_product_desc">
+                                        <h5>@item.Products.Name</h5>
+                                    </td>
+                                    <td class="price">
+                                        <span> <b>₺ @item.Products.Price x @item.Count Adet</b></span>
+                                    </td>
+                                    <td>
+                                        <span><b>₺ @(item.Products.Price * item.Count)</b></span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="cart-summary">
+                    <h5>Sipariş Özeti</h5>
+                    <hr />
+                    @using (Html.BeginForm("Buy", "Buy"))
+                    {
+                        <ul class="summary-table">
+                            <li><span style="color:red"><b class="text-center">@ViewBag.MyError</b></span></li>
+                            <li><span style="color:red"><b class="text-center">@TempData["MyError"]</b></span></li>
+
+                            <li><span>Ara Toplam :</span> <span>₺ @TempData["TotalPrice"]</span></li>
+                            <li><span>Kargo Ücreti :</span> <span>₺ 0</span></li>
+                            <b> <li><span>Toplam :</span> <span>₺ @TempData["TotalPrice"]</span></li></b>
+                            <li>
+                                <span><b>Adres Seçiniz :</b></span>
+                                <span>
+                                    @if (ViewBag.adresler != null && ((List<SelectListItem>)ViewBag.adresler) != null)
+                                    {
+                                        @Html.DropDownList("Address", (List<SelectListItem>)ViewBag.adresler, new { @class = "form-control , col-12" })
+
+                                    }
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="cart-btn mt-100">
+                            <button type="submit" class="btn btn-warning w-100">
+                                Satıcıya gönder
+                            </button>
+
+                            <br />
+                            <br />
+                            <button class="btn btn-default w-100">
+                                <a href="@Url.Action("Product","Product")" style="color:black;font-size:medium"><span class="fa fa-repeat"></span> Alışverişe Devam Et</a>
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
