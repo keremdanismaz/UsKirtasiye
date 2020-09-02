@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using UsKirtasiye.DB;
 using UsKirtasiye.Models;
+using UsKirtasiye.Shared;
 
 namespace UsKirtasiye.Controllers
 {
@@ -41,7 +44,7 @@ namespace UsKirtasiye.Controllers
         }
 
         [HttpPost]
-        public ActionResult Buy(string Address)
+        public async Task<ActionResult> Buy(string Address)
         {
             var currentuser = (UsKirtasiye.DB.Members)Session["LogonUser"];
             if (Session["LogonUser"] == null)
@@ -91,6 +94,7 @@ namespace UsKirtasiye.Controllers
                     }
                     context.Orders.Add(order);
                     context.SaveChanges();
+                    await SendMail(currentuser, basket, order);
                 }
                 catch (Exception ex)
                 {
@@ -100,6 +104,49 @@ namespace UsKirtasiye.Controllers
             }
 
             return RedirectToAction("Buy", "Buy");
+        }
+
+        private static async Task SendMail(Members currentuser, List<Models.Product_Detail.ProductBasketModels> basket, Orders order)
+        {
+            string templatePath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "EmailTemplate/template.html");
+            string html = System.IO.File.ReadAllText(templatePath);
+            html = html.Replace("&&Ad&&", currentuser.Name);
+            html = html.Replace("&&Soyad&&", currentuser.Surname);
+            html = html.Replace("&&Eamil&&", currentuser.Email);
+            html = html.Replace("&&Tel&&", currentuser.PhoneNumber);
+            html = html.Replace("&&Adres&&", order.Address);
+            string products = "";
+            foreach (Models.Product_Detail.ProductBasketModels item in basket)
+            {
+                products += $@"<tr> <td>
+                                                                            Ürün Adı:
+                                                                        </td>
+                                                                        <td>{item.Products.Name}</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td>
+                                                                            Ürün Fiyatı:
+                                                                        </td>
+                                                                        <td>{item.Products.Price}</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td>
+                                                                            Ürün Adet Bilgisi:
+                                                                        </td>
+                                                                        <td>{item.Count}</td>
+                                                                    </tr>";
+            }
+            html = html.Replace("&&Urun&&", products);
+            var emailModel = new EmailModel()
+            {
+                FromEmailAdress = "danismaz2000@gmail.com",
+                ToEmailAdress = "danismaz2000@gmail.com",
+                HtmlContent = html,
+                Subject = "Yeni bir spariş alındı."
+            };
+            await EmailSender.SendMail(emailModel);
         }
 
         [HttpGet]

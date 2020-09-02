@@ -18,7 +18,7 @@ a {
 }
 
     a:hover {
-        color: #fbb710;
+        color: #00cc81;
         text-decoration: none;
     }
 
@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
         position: fixed;
         top: calc(50% - 30px);
         left: calc(50% - 30px);
-        border: 6px solid #fbb710;
+        border: 6px solid #009961;
         border-top-color: #fff;
         border-bottom-color: #fff;
         border-radius: 50%;
@@ -94,13 +94,13 @@ h1, h2, h3, h4, h5, h6 {
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background: #fbb710;
+        background: #009961;
         color: #fff;
         transition: all 0.4s;
     }
 
         .back-to-top i:hover {
-            background: #fbb710;
+            background: #00b371;
             color: #fff;
         }
 
@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background-color: #fbb710;
+    background-color: #009961;
     visibility: hidden;
     width: 0px;
     transition: all 0.3s ease-in-out 0s;
@@ -412,7 +412,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
     width: 100%;
     height: 100vh;
-    background: url("unnamed.jpg") top center;
+    background: url("../img/hero-bg.jpg") top center;
     background-size: cover;
     position: relative;
 }
@@ -451,7 +451,7 @@ h1, h2, h3, h4, h5, h6 {
         width: 94px;
         height: 94px;
         margin: 0 auto;
-        background: radial-gradient(#fbb710 50%, rgba(251,183,16) 52%);
+        background: radial-gradient(#009961 50%, rgba(0, 153, 97, 0.4) 52%);
         border-radius: 50%;
         display: block;
         overflow: hidden;
@@ -470,7 +470,7 @@ h1, h2, h3, h4, h5, h6 {
             border-bottom: 10px solid transparent;
             border-left: 15px solid #fff;
             z-index: 100;
-            transition: all 400ms cubic-bezier(251,183,16);
+            transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
         }
 
         #hero .play-btn::before {
@@ -490,14 +490,14 @@ h1, h2, h3, h4, h5, h6 {
             animation-timing-function: steps;
             opacity: 1;
             border-radius: 50%;
-            border: 5px solid #fbb710;
+            border: 5px solid rgba(0, 153, 97, 0.7);
             top: -15%;
             left: -15%;
-            background: #fbb710;
+            background: rgba(198, 16, 0, 0);
         }
 
         #hero .play-btn:hover::after {
-            border-left: 15px solid #fbb710;
+            border-left: 15px solid #009961;
             transform: scale(20);
         }
 
@@ -592,7 +592,7 @@ section {
             display: block;
             width: 50px;
             height: 3px;
-            background: #fbb710;
+            background: #009961;
             bottom: 0;
             left: 0;
         }
@@ -667,8 +667,8 @@ section {
 .services .icon-box {
     padding: 60px 30px;
     transition: all ease-in-out 0.3s;
-    background: #fbb710;
-    box-shadow: 0px 5px 90px 0px #fbb710;
+    background: #fefefe;
+    box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.1);
     border-radius: 18px;
     border-bottom: 5px solid #fff;
 }
@@ -676,7 +676,7 @@ section {
     .services .icon-box .icon {
         width: 64px;
         height: 64px;
-        background: #fbb710;
+        background: #009961;
         border-radius: 50px;
         display: flex;
         align-items: center;
@@ -697,7 +697,7 @@ section {
     }
 
         .services .icon-box h4 a {
-            color: #fbb710;
+            color: #282828;
             transition: ease-in-out 0.3s;
         }
 
@@ -709,11 +709,11 @@ section {
 
     .services .icon-box:hover {
         transform: translateY(-10px);
-        border-color: #fbb710;
+        border-color: #009961;
     }
 
         .services .icon-box:hover h4 a {
-            color: #fbb710;
+            color: #009961;
         }
 
 /*--------------------------------------------------------------
@@ -841,7 +841,7 @@ section {
     .counts::before {
         content: "";
         position: absolute;
-        background: #fbb710;
+        background: rgba(17, 17, 17, 0.9);
         left: 0;
         right: 0;
         top: 0;
@@ -863,7 +863,7 @@ section {
         font-size: 48px;
         display: block;
         font-weight: 700;
-        color: #fbb710;
+        color: #009961;
     }
 
     .counts .counters p {

@@ -72,4 +72,9 @@ D:\UsKirtasiye\UsKirtasiye\obj\Debug\UsKirtasiye.dll
 D:\UsKirtasiye\UsKirtasiye\obj\Debug\UsKirtasiye.pdb
 D:\UsKirtasiye\UsKirtasiye\bin\AutoMapper.dll
 D:\UsKirtasiye\UsKirtasiye\bin\AutoMapper.xml
-D:\UsKirtasiye\UsKirtasiye\obj\Debug\UsKirtasiye.csprojAssemblyReference.cache
+D:\UsKirtasiye\UsKirtasiye\bin\Newtonsoft.Json.dll
+D:\UsKirtasiye\UsKirtasiye\bin\SendGrid.dll
+D:\UsKirtasiye\UsKirtasiye\bin\StarkbankEcdsa.dll
+D:\UsKirtasiye\UsKirtasiye\bin\Newtonsoft.Json.xml
+D:\UsKirtasiye\UsKirtasiye\bin\SendGrid.pdb
+D:\UsKirtasiye\UsKirtasiye\bin\SendGrid.xml

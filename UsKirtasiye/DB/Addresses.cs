@@ -20,6 +20,7 @@ namespace UsKirtasiye.DB
         public Nullable<System.DateTime> AddedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string Name { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual Members Members { get; set; }
     }

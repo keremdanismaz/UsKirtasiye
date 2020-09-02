@@ -78,21 +78,31 @@ namespace UsKirtasiye.Controllers
                 return RedirectToAction("Index", "Index");
             }
             var currentUser = (DB.Members)Session["LogonUser"];
-            DB.Addresses user = context.Addresses.FirstOrDefault(x => x.Member_Id == currentUser.Id);
-            return View(user);
+            var addresses = context.Addresses.Where(x => x.Member_Id == currentUser.Id && x.IsActive == true).ToList();
+            return View(addresses);
         }
 
         [HttpPost]
-        public ActionResult Adresler(DB.Addresses adresler)
+        public ActionResult Adresler(DB.Addresses adres)
         {
             var currentUser = (DB.Members)Session["LogonUser"];
-            var dbadress = context.Addresses.FirstOrDefault(x => x.Id == adresler.Id);
+            var dbadress = context.Addresses.FirstOrDefault(x => x.Id == adres.Id);
             dbadress.Member_Id = currentUser.Id;
-            dbadress.Name = adresler.Name;
-            dbadress.AdresDescription = adresler.AdresDescription;
-            dbadress.AdresDescription = adresler.AdresDescription;
+            dbadress.Name = adres.Name;
+            dbadress.AdresDescription = adres.AdresDescription;
+            dbadress.AdresDescription = adres.AdresDescription;
             dbadress.ModifiedDate = DateTime.Now;
             TempData["AdresDoğrulama"] = "✓  Adres Başarı ile güncellenmiştir.";
+            context.SaveChanges();
+            return RedirectToAction("Adresler", "Profile");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteAdress(int adressId)
+        {
+            var dbadress = context.Addresses.FirstOrDefault(x => x.Id == adressId);
+            dbadress.IsActive = false;
+            dbadress.ModifiedDate = DateTime.Now;
             context.SaveChanges();
             return RedirectToAction("Adresler", "Profile");
         }

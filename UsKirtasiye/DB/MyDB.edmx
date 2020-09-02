@@ -15,6 +15,7 @@
           <Property Name="AddedDate" Type="datetime" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -308,6 +309,7 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Members" Relationship="UsKirtasiyeModel.FK_Addresses_Members" FromRole="Addresses" ToRole="Members" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
@@ -442,6 +444,7 @@
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="UsKirtasiyeModel.Addresses">
               <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />

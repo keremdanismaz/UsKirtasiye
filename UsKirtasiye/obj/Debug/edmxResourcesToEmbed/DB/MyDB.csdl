@@ -116,6 +116,7 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Members" Relationship="UsKirtasiyeModel.FK_Addresses_Members" FromRole="Addresses" ToRole="Members" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Members">
     <Key>

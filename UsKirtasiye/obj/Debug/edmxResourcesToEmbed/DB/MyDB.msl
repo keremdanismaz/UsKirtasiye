@@ -50,6 +50,7 @@
     <EntitySetMapping Name="Addresses">
       <EntityTypeMapping TypeName="UsKirtasiyeModel.Addresses">
         <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />

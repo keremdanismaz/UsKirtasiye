@@ -1,0 +1,18 @@
+﻿@model UsKirtasiye.Models.ProductModel
+
+@{
+    ViewBag.Title = "Product";
+    List<UsKirtasiye.DB.Categories> categories = new List<UsKirtasiye.DB.Categories>(); // Boş bir categori listi oluşturdum.
+    if (Model.Categories != null) //Modelin içinden boş değer gelmiyorsa gir
+    {
+        categories.Add(Model.Categories); //gelen kategoriyi liste ekle
+        var parentcat = Model.Categories.Categories2; // kategorinin atası varsa onu da ekle
+        while (parentcat != null) // atası  bitene kadar dön ve her seferinde içine ekleme yap
+        {
+            categories.Add(parentcat);
+            parentcat = parentcat.Categories2;
+        }
+    }
+}
+
+@Html.Partial("_CategoryMenu", (List<UsKirtasiye.DB.Categories>)ViewBag.MenuCat)
