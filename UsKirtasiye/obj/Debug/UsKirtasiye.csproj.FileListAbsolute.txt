@@ -78,3 +78,8 @@ D:\UsKirtasiye\UsKirtasiye\bin\StarkbankEcdsa.dll
 D:\UsKirtasiye\UsKirtasiye\bin\Newtonsoft.Json.xml
 D:\UsKirtasiye\UsKirtasiye\bin\SendGrid.pdb
 D:\UsKirtasiye\UsKirtasiye\bin\SendGrid.xml
+D:\UsKirtasiye\UsKirtasiye\obj\Debug\UsKirtasiye.csprojAssemblyReference.cache
+D:\UsKirtasiye\UsKirtasiye\bin\PagedList.dll
+D:\UsKirtasiye\UsKirtasiye\bin\PagedList.Mvc.dll
+D:\UsKirtasiye\UsKirtasiye\bin\PagedList.xml
+D:\UsKirtasiye\UsKirtasiye\bin\PagedList.Mvc.xml

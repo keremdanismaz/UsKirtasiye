@@ -1,9 +1,9 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using UsKirtasiye.DB;
 using UsKirtasiye.Models;
@@ -35,7 +35,7 @@ namespace UsKirtasiye.Controllers
             }
             TempData["TotalPrice"] = model.Select(x => x.Products.Price * x.Count).Sum();
             int id = currentuser.Id;
-            ViewBag.adresler = context.Addresses.Where(x => x.Member_Id == id).Select(x => new SelectListItem()
+            ViewBag.adresler = context.Addresses.Where(x => x.Member_Id == id && x.IsActive == true).Select(x => new SelectListItem()
             {
                 Text = x.Name,
                 Value = x.Id.ToString()
@@ -150,7 +150,7 @@ namespace UsKirtasiye.Controllers
         }
 
         [HttpGet]
-        public ActionResult Sparişlerim()
+        public ActionResult Sparişlerim(int? page)
         {
             var currentuser = (UsKirtasiye.DB.Members)Session["LogonUser"];
             if (Session["LogonUser"] == null)
@@ -159,17 +159,34 @@ namespace UsKirtasiye.Controllers
             }
             else
             {
-                var orders = context.Orders.Where(x => x.Member_Id == currentuser.Id);
-                List<Models.OrderModels> model = new List<OrderModels>();
-                foreach (var item in orders)
-                {
-                    var bymodel = new OrderModels();
-                    bymodel.TotalPrice = item.OrderDetails.Sum(y => y.Price);
-                    bymodel.OrderName = string.Join(", ", item.OrderDetails.Select(y => y.Products.Name + "(" + y.Quantity + ")"));
-                    model.Add(bymodel);
-                }
+                var orders = context.OrderDetails
+                    .Include("Orders")
+                    .Include("Products")
+                    .Where(x => x.Orders.Member_Id == currentuser.Id)
+                    .Select(x => new MemberOrderDetail
+                    {
+                        Productid = x.Product_Id,
+                        ProductName = x.Products.Name,
+                        ProductPhoto = x.Products.Photo,
+                        ProductPrice = x.Products.Price,
+                        Quantity = x.Quantity,
+                    }).ToList();
 
-                return View(model);
+                //var orders = context.Orders.Where(x => x.Member_Id == currentuser.Id);
+                //List<Models.OrderModels> model = new List<OrderModels>();
+                //foreach (var item in orders)
+                //{
+                //    var bymodel = new OrderModels();
+                //    bymodel.TotalPrice = item.OrderDetails.Sum(y => y.Price);
+                //    bymodel.OrderName = string.Join("////", item.OrderDetails.Select(y => y.Products.Name + " (" + y.Quantity + "Adet" + ")"));
+                //    model.Add(bymodel);
+                //}
+
+                List<string> asd = new List<string>();
+
+                int pageSize = 10;
+                int pageNumber = (page ?? 1);
+                return View(orders.ToPagedList(pageNumber, pageSize));
             }
         }
     }

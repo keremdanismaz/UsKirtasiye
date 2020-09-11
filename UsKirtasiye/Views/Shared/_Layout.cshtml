@@ -84,7 +84,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Profile","Profile")">
-                                <span style="color:#fbb710" class="fa fa-user"></span> @(((UsKirtasiye.DB.Members)Session["LogonUser"]).Name)  @(((UsKirtasiye.DB.Members)Session["LogonUser"]).Surname)
+                                <span style="color:#fbb710" class="fa fa-user"></span> Profil - @(((UsKirtasiye.DB.Members)Session["LogonUser"]).Name)
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Adresler","Profile")">
+                                <span style="color:#fbb710" class="fa fa-address-card"></span> Adreslerim
                             </a>
                         </li>
                         <li class="nav-item">
@@ -92,6 +97,7 @@
                                 <span style="color:#fbb710" class="fa fa-sign-out"></span> Çıkış
                             </a>
                         </li>
+
                     }
                     else
                     {

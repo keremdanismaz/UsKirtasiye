@@ -78,8 +78,16 @@ namespace UsKirtasiye.Controllers
                 return RedirectToAction("Index", "Index");
             }
             var currentUser = (DB.Members)Session["LogonUser"];
+
             var addresses = context.Addresses.Where(x => x.Member_Id == currentUser.Id && x.IsActive == true).ToList();
-            return View(addresses);
+            if (addresses.Any())
+            {
+                return View(addresses);
+            }
+            else
+            {
+                return RedirectToAction("AdresEkle", "Profile");
+            }
         }
 
         [HttpPost]
@@ -90,11 +98,36 @@ namespace UsKirtasiye.Controllers
             dbadress.Member_Id = currentUser.Id;
             dbadress.Name = adres.Name;
             dbadress.AdresDescription = adres.AdresDescription;
-            dbadress.AdresDescription = adres.AdresDescription;
             dbadress.ModifiedDate = DateTime.Now;
             TempData["AdresDoğrulama"] = "✓  Adres Başarı ile güncellenmiştir.";
             context.SaveChanges();
             return RedirectToAction("Adresler", "Profile");
+        }
+
+        [HttpGet]
+        public ActionResult AdresEkle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdresEkle(DB.Addresses adres)
+        {
+            DB.Addresses adresler = context.Addresses.FirstOrDefault(x => x.AdresDescription == adres.AdresDescription);
+            if (adresler != null)
+            {
+                TempData["AdresHata"] = "Böyle bir adres zaten kayıtlıdır.";
+            }
+            else
+            {
+                var currentuser = (UsKirtasiye.DB.Members)Session["LogonUser"];
+                adres.AddedDate = DateTime.Now;
+                adres.Member_Id = currentuser.Id;
+                adres.IsActive = true;
+                context.Addresses.Add(adres);
+                context.SaveChanges();
+            }
+            return View();
         }
 
         [HttpGet]

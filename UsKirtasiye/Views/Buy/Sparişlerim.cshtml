@@ -1,40 +1,74 @@
-﻿@model List<UsKirtasiye.Models.OrderModels>
-    @{
-        ViewBag.Title = "Sparişlerim";
-    }
-    <div class="cart-table-area section-padding-100">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-lg-12">
-                    <div class="cart-title mt-50">
-                        <h2><span class="fa fa-first-order"></span> Sparişlerim</h2>
-                    </div>
+﻿@model PagedList.IPagedList<UsKirtasiye.Models.MemberOrderDetail>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Sparişlerim";
+}
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="cart-title mt-50">
+                    <h2><span style="color:#fbb710" class="fa fa-first-order"></span> Sparişlerim</h2>
+                </div>
 
-                    <div class="cart-table clearfix">
-                        <table class="table table-responsive">
-                            <thead>
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ürün Adı</th>
+                                <th>Fiyat</th>
+                                <th>Adet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
                                 <tr>
-                                    <th>Ürün Adı</th>
-                                    <th>Fiyat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (UsKirtasiye.Models.OrderModels item in Model)
-                                {
-                                    <tr>
+                                    <td class="cart_product_img">
+                                        <a href="~/Product_Detail/Product_Detail/@item.Productid"><img src="@item.ProductPhoto" alt="Ürün"></a>
+                                    </td>
 
-                                        <td class="cart_product_desc">
-                                            <h5>@item.OrderName</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span> <b>₺ @item.TotalPrice</b></span>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                    <td class="cart_product_desc">
+                                        <h5>@item.ProductName</h5>
+                                    </td>
+                                    <td>
+                                        <span><b>₺ @item.ProductPrice</b></span>
+                                    </td>
+                                    <td class="price">
+                                        <span> <b>@item.Quantity Adet</b></span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="navigation">
+                                <div class="text-right" style="font-weight:bold">
+                                    Sayfa @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                                    @Html.PagedListPager(Model, page => Url.Action("Sparişlerim",
+                                   new { page  } ))
+                                </div>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        @*<div class="row">
+                <div class="col-12">
+                    <nav aria-label="navigation">
+                        <ul class="pagination justify-content-end mt-50">
+                            <li class="page-item "><a class="page-link" href="#">01.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">02.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">03.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">04.</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>*@
     </div>
+</div>

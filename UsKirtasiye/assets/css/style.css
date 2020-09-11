@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background-color: #009961;
+    background-color: #fbb710;
     visibility: hidden;
     width: 0px;
     transition: all 0.3s ease-in-out 0s;
@@ -206,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
     background: #fff;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
     transition: 0.3s;
-    border-top: 2px solid #009961;
+    border-top: 2px solid #fbb710;
 }
 
 .nav-menu .drop-down:hover > ul {
@@ -229,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
     .nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
-        color: #009961;
+        color: #fbb710;
     }
 
 .nav-menu .drop-down > a:after {
@@ -351,7 +351,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
         .mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
-            color: #009961;
+            color: #fbb710;
             text-decoration: none;
         }
 

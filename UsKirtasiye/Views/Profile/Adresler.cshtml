@@ -1,11 +1,18 @@
 ﻿@model List<UsKirtasiye.DB.Addresses>
 @{
     ViewBag.Title = "Adresler";
+    int sayi = 0;
 }
+
 <div class="single-product-area section-padding-100 ">
     <div class="container-fluid">
+        <div class="amado-btn-group" style="text-align:right">
+            <a style="border-radius:10px;" href="@Url.Action("AdresEkle","Profile")" class="btn amado-btn mb-15"><span class="fa fa-plus "></span> Adres Ekle</a> @*Hakkımızda url ve sayfası gelecek*@
+        </div>
         @foreach (var item in Model)
         {
+
+            sayi++;
             using (Html.BeginForm("Adresler", "Profile"))
             {
 
@@ -19,8 +26,7 @@
                                     <div class="col-2"></div>
 
                                     <div class="col-8 ">
-                                        <h4 class="card-title mt-3 text-center"><b><span style="font-weight:bold" class="fa fa-address-book"></span> Adres Bilgilerim</b></h4>
-                                        <p class="text-center" style="color:green"><b>@TempData["AdresDoğrulama"] </b></p>
+                                        <h4 class="card-title mt-3 text-center"><b><span style="font-weight:bold" class="fa fa-address-book"></span> Adres @sayi</b></h4>
 
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
@@ -53,6 +59,10 @@
                         <!--container end.//-->
                     </div>
                 </div>
+                <br />
+                <br />
+                <hr />
+
             }
         }
     </div>
